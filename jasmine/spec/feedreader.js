@@ -14,7 +14,7 @@ $(function() {
     * feeds definitions, the allFeeds variable in our application.
     */
     describe('RSS Feeds', function() {
-        /* This is our first test - it tests to make sure that the
+         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
          * empty. Experiment with this before you get started on
          * the rest of this project. What happens when you change
@@ -37,6 +37,7 @@ $(function() {
                 expect(feed.url).toBeDefined();
             });
         });
+
         it('URLs for the feeds are not empty', function(){
             allFeeds.forEach(function(feed){
                 //confirm that URL is not empty
@@ -64,8 +65,8 @@ $(function() {
     });
 
     describe('The menu', function() {
-    /* TODO: Write a new test suite named "The menu" */
-        
+        /* TODO: Write a new test suite named "The menu" */
+
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
@@ -75,8 +76,8 @@ $(function() {
             var body = $('body');
             //checking that bodyhas class "menu-hidden" - that is that menu is hidden by default
             expect(body.hasClass("menu-hidden")).toBe(true);
-
         });
+        
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
@@ -91,7 +92,6 @@ $(function() {
             menuicon.click();
             //Ensuring the menu hides when clicked again
             expect(body.hasClass("menu-hidden")).toBe(true);
-
         });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -106,22 +106,20 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
         it('confirms there is at least one feed added', function(done){
-        var entry = $('.feed a').children('.entry');
-        // checking if the feed has more than 0 entries
-        expect(entry.length).toBeGreaterThan(0);
-          done();
+            var entry = $('.feed a').children('.entry');
+            // checking if the feed has more than 0 entries
+            expect(entry.length).toBeGreaterThan(0);
+            done();
         });
 
     });
-        
 
-    /* TODO: Write a new test suite named "New Feed Selection"
-    
+        /* TODO: Write a new test suite named "New Feed Selection"
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-        describe('New Feed Selection', function(){
+    describe('New Feed Selection', function(){
         var beforeentry,
             entryAfterchange;
 
@@ -130,20 +128,20 @@ $(function() {
             beforeentry = $('.feed a').children('.entry');
             //loading second feed
             loadFeed(2, done);
-    });
-    
-    it('the content changes when a new feed is loaded', function(done){
-        //saving text of te first entry into var entryAfterchange
-        entryAfterchange = $('.feed a').children('.entry');
-        // Has the content has changed after loading new feed?
-        //".entry" elements should be different 
-        expect(beforeentry).not.toBe(entryAfterchange);
-          done();
         });
 
-    afterEach(function(done){
-        //loading back the first feed
+        it('the content changes when a new feed is loaded', function(done){
+        //saving text of te first entry into var entryAfterchange
+            entryAfterchange = $('.feed a').children('.entry');
+            // Has the content has changed after loading new feed?
+            //".entry" elements should be different
+            expect(beforeentry).not.toBe(entryAfterchange);
+            done();
+        });
+
+        afterEach(function(done){
+            //loading back the first feed
             loadFeed(0, done);
-    });
+        });
     });
 }());
